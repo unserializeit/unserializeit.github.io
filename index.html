@@ -54,6 +54,7 @@
 				height: 150px;
 				width: 100%;
 				padding: 0.625em;
+				resize: vertical;
 			}
 			button {
 				-webkit-appearance: none;
@@ -100,9 +101,13 @@
 			#result {
 				background-color: #f9f9f9;
 				border: 1px solid #ccc;
+				display: none;
 				margin-top: 1.25em;
 				overflow-x: scroll;
 				padding: 10px;
+			}
+			#button-copy {
+				display: none;
 			}
 		</style>
 		<script type="module" src="./assets/js/index.js"></script>
@@ -122,7 +127,7 @@
 			<button id="button-unserialize">Unserialize</button>
 
 			<div id="result"></div>
-			<button id="button-copy" disabled>Copy</button>
+			<button id="button-copy">Copy</button>
 		</main>
 		<footer>
 			<a href="https://github.com/unserializeit/unserializeit.github.io">Github</a> | <a href="https://www.flaticon.com/free-icons/ramen" title="ramen icons">Icon by iconixar @ Flaticon</a>

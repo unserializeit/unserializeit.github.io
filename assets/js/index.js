@@ -4,6 +4,9 @@ const UnserializeIt = {
 
 	init() {
 
+		this.resultEl = document.getElementById('result');
+		this.buttonCopy = document.getElementById('button-copy');
+
 		this.initUnserializeButton();
 		this.initCopyButton();
 	},
@@ -21,10 +24,8 @@ const UnserializeIt = {
 
 	initCopyButton() {
 
-		const el = document.getElementById( 'button-copy' );
-
-		if ( el ) {
-			el.addEventListener( 'click', () => {
+		if ( this.buttonCopy ) {
+			this.buttonCopy.addEventListener( 'click', () => {
 				this.copyToClipboard();
 			});
 		}
@@ -32,7 +33,12 @@ const UnserializeIt = {
 
 	unserializeData() {
 
-		const serializedData = document.getElementById('serialized-data').value;
+		const serializedData = document.getElementById('serialized-data').value.trim();
+
+		if ( '' === serializedData ) {
+			return;
+		}
+
 		let result;
 
 		try {
@@ -41,15 +47,25 @@ const UnserializeIt = {
 			try {
 				result = unserialize(serializedData);
 			} catch (phpError) {
-				result = 'Invalid serialized data: ' + phpError.message;
+				error = 'Invalid serialized data: ' + phpError.message;
+				result = false;
 			}
 		}
 
-		const string = result ? `<pre>${JSON.stringify(result, null, 2)}</pre>` : '';
+		if ( result ) {
 
-		document.getElementById('result').innerHTML = string;
-		document.getElementById('button-copy').disabled = !result;
+			const string = `<pre>${JSON.stringify(result, null, 2)}</pre>`;
 
+			this.resultEl.innerHTML = string;
+			this.resultEl.style.display = 'block';
+			this.buttonCopy.style.display = 'block';
+
+		} else {
+
+			this.buttonCopy.style.display = 'none';
+			this.resultEl.style.display = 'none';
+			this.resultEl.innerHTML = '';
+		}
 	},
 
 	copyToClipboard () {
