@@ -56,24 +56,31 @@
 			button {
 				-webkit-appearance: none;
 				appearance: none;
-				background-color: #ddd;
-				border: 1px solid #ccc;
+				background-color: #fdd14b;
+				border: none;
 				border-radius: 6px;
 				cursor: pointer;
 				font-size: 1em;
 				margin-top: 0.625em;
 				padding: 0.625em;
+				width: 100%;
+				transition: all .2s;
+			}
+			@media all and (min-width: 600px) {
 
+				button {
+					width: auto;
+				}
 			}
 			button:focus,
 			button:hover {
-				background-color: #ccc;
+				background-color: #f0c84c;
 			}
 			button:active {
-				background-color: #bbb;
-				border-color: #aaa;
+				background-color: #e9c248;
 			}
 			button:disabled {
+				background-color: #ddd;
 				opacity: 0.85;
 				pointer-events: none;
 			}
