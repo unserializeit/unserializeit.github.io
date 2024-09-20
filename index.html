@@ -59,13 +59,13 @@
 			button {
 				-webkit-appearance: none;
 				appearance: none;
-				background-color: #fdd14b;
 				border: none;
 				border-radius: 6px;
 				color: #222;
 				cursor: pointer;
 				font-size: 1em;
 				margin-top: 0.625em;
+				min-width: 8em;
 				padding: 0.625em;
 				width: 100%;
 				transition: all .2s;
@@ -77,17 +77,29 @@
 					width: auto;
 				}
 			}
-			button:focus,
-			button:hover {
+			.button-primary {
+				background-color: #fdd14b;
+				border: 1px solid #fdd14b;
+			}
+			.button-primary:focus,
+			.button-primary:hover {
 				background-color: #f0c84c;
+				border-color: #f0c84c;
 			}
-			button:active {
+			.button-primary:active {
 				background-color: #e9c248;
+				border-color: #e9c248;
 			}
-			button:disabled {
-				background-color: #ddd;
-				opacity: 0.85;
-				pointer-events: none;
+			.button-secondary {
+				background-color: transparent;
+				border: 1px solid #ccc;
+			}
+			.button-secondary:focus,
+			.button-secondary:hover {
+				background-color: #ccc;
+			}
+			.button-secondary:active {
+				background-color: #bbb;
 			}
 			a {
 				color: inherit;
@@ -102,7 +114,7 @@
 				background-color: #f9f9f9;
 				border: 1px solid #ccc;
 				display: none;
-				margin-top: 1.25em;
+				margin-top: 2.5em;
 				overflow-x: scroll;
 				padding: 10px;
 			}
@@ -124,10 +136,10 @@
 
 			<textarea id="serialized-data" placeholder="Paste your serialized data here..."></textarea>
 			<br>
-			<button id="button-unserialize">Unserialize</button>
+			<button id="button-unserialize" class="button-primary">Unserialize</button>
 
 			<div id="result"></div>
-			<button id="button-copy">Copy</button>
+			<button id="button-copy" class="button-secondary">Copy</button>
 		</main>
 		<footer>
 			<a href="https://github.com/unserializeit/unserializeit.github.io">Github</a> | <a href="https://www.flaticon.com/free-icons/ramen" title="ramen icons">Icon by iconixar @ Flaticon</a>
