@@ -89,28 +89,26 @@ const UnserializeIt = {
 		}
 	},
 
-	copyToClipboard () {
+	copyToClipboard() {
 
-		const resultElement = document.getElementById("result");
-
-		if ( ! resultElement ) {
+		if ( ! this.resultEl ) {
 			return;
 		}
 
-		const textToCopy = resultElement.innerText || resultElement.textContent;
-		const tempTextArea = document.createElement('textarea');
+		const value = this.resultEl.innerText || this.resultEl.textContent;
+		const textarea = document.createElement('textarea');
 
-		tempTextArea.value = textToCopy;
+		textarea.value = value;
 
-		document.body.appendChild( tempTextArea );
+		document.body.appendChild( textarea );
 
-		tempTextArea.select();
+		textarea.select();
 
 		document.execCommand('copy');
 
-		document.body.removeChild( tempTextArea );
+		document.body.removeChild( textarea );
 
-		alert('Result copied to clipboard');
+		alert( 'Result copied to clipboard' );
 	},
 
 	renderTable( data ) {
