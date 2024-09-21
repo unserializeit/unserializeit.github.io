@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Unserialize JSON and PHP</title>
-		<meta name="description" content="Unserialize JSON and PHP serialized strings in the browser">
+		<meta name="description" content="Unserialize JSON, PHP and CSV serialized strings in the browser">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 		<meta name="theme-color" content="#ce3536">
 		<style>
@@ -121,7 +121,43 @@
 			#button-copy {
 				display: none;
 			}
+			#table {
+				margin-top: 1.5em;
+				padding-bottom: 0;
+				position: relative;
+				overflow-x: scroll;
+				width: 100%;
+				border: 1px solid #ccc;
+			}
+			#table:empty {
+				border: none;
+			}
+			table {
+				border-spacing: 0;
+				margin: 0;
+				padding: 0;
+				min-width: 100%;
+			}
+			th {
+				background-color: #f9f9f9;
+				max-width: 24em;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			td, th {
+				padding: 0.5em;
+				text-align: left;
+			}
+			td {
+				border-top: 1px solid #ccc;
+				border-left: 1px solid #ccc;
+			}
+			td:first-of-type {
+				border-left: none;
+			}
 		</style>
+		<script src="./assets/js/papaparse.js"></script>
 		<script type="module" src="./assets/js/index.js"></script>
 	</head>
 	<body>
@@ -132,12 +168,13 @@
 				<h1>Unserialize It!</h1>
 			</div>
 
-			<p>Paste your serialized PHP object or JSON string below:</p>
+			<p>Paste your serialized PHP object, JSON or CSV string below:</p>
 
 			<textarea id="serialized-data" placeholder="Paste your serialized data here..."></textarea>
-			<br>
 			<button id="button-unserialize" class="button-primary">Unserialize</button>
 
+
+			<div id="table"></div>
 			<div id="result"></div>
 			<button id="button-copy" class="button-secondary">Copy</button>
 		</main>

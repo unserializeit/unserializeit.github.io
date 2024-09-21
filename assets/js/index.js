@@ -1,11 +1,13 @@
+/* global Papa */
 import unserialize from './unserialize.js';
 
 const UnserializeIt = {
 
 	init() {
 
-		this.resultEl = document.getElementById('result');
-		this.buttonCopy = document.getElementById('button-copy');
+		this.buttonCopy = document.getElementById( 'button-copy' );
+		this.resultEl = document.getElementById( 'result' );
+		this.tableEl = document.getElementById( 'table' );
 
 		this.initUnserializeButton();
 		this.initCopyButton();
@@ -17,9 +19,16 @@ const UnserializeIt = {
 
 		if ( el ) {
 			el.addEventListener( 'click', () => {
+				this.clearResult();
 				this.unserializeData();
 			});
 		}
+	},
+
+	clearResult() {
+
+		this.resultEl.innerText = '';
+		this.tableEl.innerText = '';
 	},
 
 	initCopyButton() {
@@ -42,13 +51,25 @@ const UnserializeIt = {
 		let result;
 
 		try {
+
 			result = JSON.parse( serializedData );
-		} catch (jsonError) {
-			try {
-				result = unserialize(serializedData);
-			} catch (phpError) {
-				error = 'Invalid serialized data: ' + phpError.message;
-				result = false;
+
+		} catch ( jsonError ) {
+
+			result = unserialize( serializedData );
+
+			if ( ! result ) {
+
+				Papa.parse(
+					serializedData,
+					{
+						complete: ( results ) => {
+
+							// @todo Check if there are any errors before rendering.
+							this.renderTable( results.data );
+						}
+					}
+				);
 			}
 		}
 
@@ -90,6 +111,54 @@ const UnserializeIt = {
 		document.body.removeChild( tempTextArea );
 
 		alert('Result copied to clipboard');
+	},
+
+	renderTable( data ) {
+
+		if ( ! this.tableEl ) {
+			return;
+		}
+
+		const table = document.createElement( 'table' );
+		const thead = document.createElement( 'thead' );
+		const tbody = document.createElement( 'tbody' );
+
+		for ( let i = 0; i < data.length; i++ ) {
+
+			if ( i === 0 ) {
+
+				for( let j = 0; j < data[i].length; j++ ) {
+
+					const th = document.createElement( 'th' );
+					const text = document.createTextNode( data[i][j] );
+
+					th.appendChild( text );
+					thead.appendChild( th );
+				}
+
+			}
+
+			if ( i > 0 ) {
+
+				const tr = document.createElement( 'tr' );
+
+				for( let j = 0; j < data[i].length; j++ ) {
+
+					const td = document.createElement( 'td' );
+					const text = document.createTextNode( data[i][j] );
+
+					td.appendChild( text );
+					tr.appendChild( td );
+				}
+
+				tbody.appendChild( tr );
+			}
+		}
+
+		table.appendChild( thead );
+		table.appendChild( tbody );
+
+		this.tableEl.appendChild( table );
 	},
 
 	isSerializedPHPObject( data ) {
