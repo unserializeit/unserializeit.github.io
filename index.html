@@ -145,15 +145,16 @@
 				white-space: nowrap;
 			}
 			td, th {
+				border-left: 1px solid #ccc;
 				padding: 0.5em;
 				text-align: left;
 			}
+			td:first-of-type,
+			th:first-of-type {
+				border-left: none;
+			}
 			td {
 				border-top: 1px solid #ccc;
-				border-left: 1px solid #ccc;
-			}
-			td:first-of-type {
-				border-left: none;
 			}
 		</style>
 		<script src="./assets/js/papaparse.js"></script>
