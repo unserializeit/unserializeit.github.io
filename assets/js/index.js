@@ -128,7 +128,7 @@ const UnserializeIt = {
 				for( let j = 0; j < data[i].length; j++ ) {
 
 					const th = document.createElement( 'th' );
-					const text = document.createTextNode( data[i][j] );
+					const text = document.createTextNode( data[ i ][ j ] );
 
 					th.appendChild( text );
 					thead.appendChild( th );
@@ -140,10 +140,10 @@ const UnserializeIt = {
 
 				const tr = document.createElement( 'tr' );
 
-				for( let j = 0; j < data[i].length; j++ ) {
+				for ( let j = 0; j < data[ i ].length; j++ ) {
 
 					const td = document.createElement( 'td' );
-					const text = document.createTextNode( data[i][j] );
+					const text = document.createTextNode( data[ i ][ j ] );
 
 					td.appendChild( text );
 					tr.appendChild( td );
