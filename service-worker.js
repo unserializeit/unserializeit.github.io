@@ -1,10 +1,9 @@
-const CACHE_NAME = 'unserializeit-cache-v2';
+const CACHE_NAME = 'unserializeit-cache-v3';
 const urlsToCache = [
 	'/',
 	'/index.html',
 	'/assets/js/papaparse.js',
 	'/assets/js/index.js',
-	'/assets/images/logo.svg',
 ];
 
 self.addEventListener( 'install', ( event ) => {
