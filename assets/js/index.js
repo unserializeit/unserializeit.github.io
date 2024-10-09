@@ -157,22 +157,6 @@ const UnserializeIt = {
 		table.appendChild( tbody );
 
 		this.tableEl.appendChild( table );
-	},
-
-	isSerializedPHPObject( data ) {
-
-		const regex = /^O:\d+:"[^"]+":\d+:\{/;
-
-		return regex.test( data );
-	},
-
-	base64Decode( string ) {
-
-		if ( 'function' !== typeof atob ) {
-			return false;
-		}
-
-		return decodeURIComponent( atob( string ) );
 	}
 };
 
