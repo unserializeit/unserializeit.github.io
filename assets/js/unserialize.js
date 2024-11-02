@@ -235,9 +235,9 @@ function expectObject(str, cache) {
     throw SyntaxError('Invalid input')
   }
 
-  if (className !== 'stdClass') {
-    throw SyntaxError(`Unsupported object type: ${className}`)
-  }
+  // if (className !== 'stdClass') {
+  //   throw SyntaxError(`Unsupported object type: ${className}`)
+  // }
 
   let totalOffset = objectLiteralBeginMatch.length
 
