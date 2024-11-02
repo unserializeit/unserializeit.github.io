@@ -1,10 +1,3 @@
-export function isSerializedPHPObjectRegex( data ) {
-
-	const regex = /^O:\d+:"[^"]+":\d+:\{/;
-
-	return regex.test( data );
-},
-
 /**
  * Checks value to find if it is a serialized PHP string.
  *
