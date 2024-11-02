@@ -75,9 +75,9 @@ const UnserializeIt = {
 
 		if ( result ) {
 
-			const string = `<pre>${JSON.stringify(result, null, 2)}</pre>`;
+			const string = `${JSON.stringify(result, null, 2)}`;
 
-			this.resultEl.innerHTML = string;
+			this.resultEl.innerText = string;
 			this.resultEl.style.display = 'block';
 			this.buttonCopy.style.display = 'block';
 
@@ -85,7 +85,7 @@ const UnserializeIt = {
 
 			this.buttonCopy.style.display = 'none';
 			this.resultEl.style.display = 'none';
-			this.resultEl.innerHTML = '';
+			this.resultEl.innerText = '';
 		}
 	},
 
